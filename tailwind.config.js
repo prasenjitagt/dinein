@@ -1,5 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  theme:{
+    extend:{
+      colors:{
+        "myGreenDark": "#009C1A",
+        
+        "myGreenLight":"#26CC00",
+      }
+    }
+  },
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -28,6 +37,7 @@ module.exports = {
           warning: "#ffa200",
 
           error: "#ff5078",
+
         },
       },
     ],
