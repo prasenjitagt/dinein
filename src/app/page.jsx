@@ -6,10 +6,11 @@ export default function Home() {
     "/foodItemPics/momos.jpg",
     "/foodItemPics/thali.jpg",
     "/foodItemPics/Shahi Paneer.jpg",
-    "/foodItemPics/Gobi Manchurian.jpg"
+    "/foodItemPics/Gobi Manchurian.jpg",
+    "/foodItemPics/burger.jpg"
   ]
 
   return <div className="p-4 bg-slate-300">
-    <FoodCard image={images[2]} />
+    <FoodCard image={images[3]} />
   </div>;
 }
