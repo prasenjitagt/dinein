@@ -3,9 +3,9 @@
 import { useState } from "react";
 import Image from "next/image"
 const FoodCard = ({ image }) => {
-    const [more,setMore] = useState(false);
-    const handleMore = () =>{
-        setMore(more => !more);
+    const [showText, setShowText] = useState(false);
+    const handleShowText = () => {
+        setShowText(prev => !prev);
     }
 
     return (
@@ -24,17 +24,26 @@ const FoodCard = ({ image }) => {
                     <section>
 
                         <p className="font-bold text-sm">ABOUT</p>
-                        <div className="">
-
-                        <p className={`text-justify text-[10px] ${more? (``):(`line-clamp-2 `)} leading-3`}>
-                            {`Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi sint commodi vitae recusandae est dignissimos corporis dolor quaerat quae optio.`}
-                        </p>
-                            <button onClick={handleMore} className="text-[10px] font-bold">
-                            {`${more? (`less`):(`more`)}`}
-                        </button>
 
 
-                        
+
+                        <div className="flex relative">
+
+                            <p className={`pr-2 text-justify text-[10px] ${showText ? null : (`line-clamp-2 `)} leading-3`}>
+                                {`Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi sint commodi vitae recusandae est dignissimos corporis dolor quaerat quae optio. `}
+
+                                <button onClick={handleShowText} className=" text-[10px] font-bold lg:hidden md:hidden">
+                                    {showText ? `less` : null}
+                                </button>
+
+
+                            </p>
+                            <p className="min-w-[15px]">{``}</p>
+
+                            <button onClick={handleShowText} className=" absolute right-0 bottom-0 text-[10px] font-bold lg:hidden md:hidden">
+                                {showText ? null : `more`}
+                            </button>
+
 
                         </div>
                     </section>
