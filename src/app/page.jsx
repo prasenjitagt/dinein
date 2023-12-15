@@ -1,43 +1,32 @@
-import FoodCard from "./components/FoodCard";
-
-export default function Home() {
-
-  const images = [
-    "/foodItemPics/momos.jpg",
-    "/foodItemPics/thali.jpg",
-    "/foodItemPics/Shahi Paneer.jpg",
-    "/foodItemPics/Gobi Manchurian.jpg",
-    "/foodItemPics/burger.jpg"
-  ]
-
+import Link from "next/link"
+import Image from "next/image"
+import CarouselCard from "./components/CarouselCard"
+const Home = () => {
   return (
-    <>
-      <div className="text-center rounded-lg text-base-100 py-4 mx-4 mb-4 bg-gradient-to-b from-myGreenDark to-myGreenLight">
-        <p className="font-bold text-xl">
-          {`BIRYANI`}
-        </p>
-        <p>
-          {`MENU`}
-        </p>
+    <div className="text-center px-3 h-[100vh]">
+      <p className="text-3xl mb-1 font-bold">{`The Kabab House`}</p>
+      <section className="flex">
+        <input type="text" className="transition-all h-9 duration-75 input focus:border-none input-success w-full " placeholder="Search items" />
+        <button className="pl-2">
+          <Image
+            width={28}
+            height={28}
+            alt="menu"
+            src={`/icons/search.svg`}
+          />
+        </button>
+      </section>
 
-        
-      </div>
-      <div className="px-4">
+      <section>
+        <CarouselCard />
+      </section>
 
-      <section className="">
-          <p>
-            VEG
-          </p>
-        </section>
-      </div>
-      <div className="p-4 bg-slate-300 grid sm:grid-cols-1 lg:grid-cols-2 gap-4">
 
-        <FoodCard image={images[0]} />
-        <FoodCard image={images[1]} />
-        <FoodCard image={images[2]} />
-        <FoodCard image={images[3]} />
-        <FoodCard image={images[4]} />
-      </div>
-    </>
+      <Link className="btn btn-info" href="/biryani">
+        Biryani page
+      </Link>
+    </div >
   )
 }
+
+export default Home

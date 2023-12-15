@@ -1,32 +1,94 @@
+"use client"
+
+import Image from "next/image"
+import Link from "next/link"
+import { useState, useEffect } from "react";
+
+
+
 const Navbar = () => {
-  return (<div className="navbar bg-base-100">
-    <div className="navbar-start">
-      <div className="dropdown">
-        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
-        </div>
-        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-          <li><a>Homepage</a></li>
-          <li><a>Portfolio</a></li>
-          <li><a>About</a></li>
-        </ul>
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    // Add a click event listener to close the menu when clicking outside of it
+    const closeMenuOnClickOutside = (event) => {
+      if (isMenuOpen && !event.target.closest(".navCont")) {
+        setIsMenuOpen(false);
+      }
+    };
+
+
+    // Attach the event listener when the component mounts
+    document.addEventListener("click", closeMenuOnClickOutside);
+
+    // Detach the event listener when the component unmounts
+    return () => {
+      document.removeEventListener("click", closeMenuOnClickOutside);
+    };
+  }, [isMenuOpen]);
+
+  const handleMenuIcon = () => {
+    setIsMenuOpen(prev => !prev);
+  }
+
+  return (
+
+    <div className="relative w-[100vw] shadow-xl p-1 mb-4 navCont ">
+
+      <div className={` ${isMenuOpen ? `rounded-t-lg ` : `rounded-lg`} bg-myGreenDark `}>
+
+        <button
+          className={` md:hidden lg:hidden transition-transform transform ${isMenuOpen ? "rotate-45" : ``}`}
+          onClick={handleMenuIcon}>
+          <Image
+            width={28}
+            height={28}
+            alt="menu"
+            src={isMenuOpen ? `/icons/cross.svg` : `/icons/menu.svg`}
+          />
+        </button>
       </div>
-    </div>
-    <div className="navbar-center">
-      <a className="btn btn-ghost text-xl">Easy Eatz</a>
-    </div>
-    <div className="navbar-end">
-      <button className="btn btn-ghost btn-circle">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-      </button>
-      <button className="btn btn-ghost btn-circle">
-        <div className="indicator">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
-          <span className="badge badge-xs badge-primary indicator-item"></span>
-        </div>
-      </button>
-    </div>
-  </div>)
+
+      <ul className={`absolute 
+      flex
+      flex-col
+      items-center
+      h-[100vh]
+      z-10
+      lg:hidden
+      md:hidden
+      opacity-90
+      origin-left
+      duration-200
+      ${isMenuOpen ? `w-[50vw]` : `w-0`}
+      text-white
+      bg-myGreenDark `}>
+        <li >
+          <Link onClick={handleMenuIcon} href={`/`}>
+            {isMenuOpen && `Home`}
+          </Link>
+        </li>
+        <li>
+          <Link onClick={handleMenuIcon} href={`/add-item`}>
+            {isMenuOpen && `Add Item`}
+
+          </Link>
+        </li>
+        <li>
+          <Link onClick={handleMenuIcon} href={`/biryani`}>
+            {isMenuOpen && `Biryani`}
+
+          </Link>
+        </li>
+      </ul>
+
+
+
+
+
+
+    </div>)
 };
 
 export default Navbar;

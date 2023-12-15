@@ -51,16 +51,29 @@ const FoodCard = ({ image }) => {
                     <section>
                         <div className="flex items-center justify-between">
 
-                            <div className="flex items-center justify-between px-3 font-bold text-center text-base bg-myGreenDark rounded-lg w-full text-base-100">
+                            <div className="flex items-center justify-between px-3 font-bold text-center text-base bg-myGreenDark rounded-lg w-full text-white">
                                 {`HALF`}
-                                <section>
+                                <section className="flex">
 
-                                    <button className="text-xl px-2">
-                                        {`-`}
+                                    <button className="pr-2">
+                                        <Image
+                                            width={28}
+                                            height={28}
+                                            alt="menu"
+                                            src={`/icons/minus.svg`}
+                                        />
                                     </button>
-                                    {`0`}
-                                    <button className="text-xl px-2">
-                                        {`+`}
+                                    <p className="text-2xl font-normal">
+
+                                        {`0`}
+                                    </p>
+                                    <button className="pl-2">
+                                        <Image
+                                            width={28}
+                                            height={28}
+                                            alt="menu"
+                                            src={`/icons/cross.svg`}
+                                        />
                                     </button>
                                 </section>
                             </div>
@@ -76,9 +89,9 @@ const FoodCard = ({ image }) => {
                                         />
                                     </div>
                                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                                        <li className="hover:bg-myGreenDark hover:text-base-100 rounded-md"><a>HALF</a></li>
+                                        <li className="hover:bg-myGreenDark hover:text-white rounded-md"><a>HALF</a></li>
 
-                                        <li className="hover:bg-myGreenDark hover:text-base-100 rounded-md"><a>FULL</a></li>
+                                        <li className="hover:bg-myGreenDark hover:text-white rounded-md"><a>FULL</a></li>
                                     </ul>
                                 </div>
                             </button>
