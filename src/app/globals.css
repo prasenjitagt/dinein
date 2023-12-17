@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+
+@layer utilities {
+    .carouselArrow {
+        @apply bg-slate-200 rounded-full hover:bg-slate-300 transition-all duration-300
+    }
+
+    .carouselTransition {
+        @apply transition-transform  duration-500 
+    }
+
+    .themedBtn {
+        @apply bg-myGreenDark text-white w-36 py-4 pl-2 flex text-[12px] font-extrabold rounded-lg 
+    }
+
+    .centerAll {
+        @apply flex flex-col justify-center items-center
+    }
+
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+   /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+  }
+}

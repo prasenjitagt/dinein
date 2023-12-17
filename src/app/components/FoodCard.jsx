@@ -55,22 +55,23 @@ const FoodCard = ({ image }) => {
                                 {`HALF`}
                                 <section className="flex">
 
-                                    <button className="pr-2">
+                                    <button onClick={() => window.alert("clicked")} className="pr-1">
                                         <Image
-                                            width={28}
-                                            height={28}
+
+                                            width={23}
+                                            height={23}
                                             alt="menu"
                                             src={`/icons/minus.svg`}
                                         />
                                     </button>
-                                    <p className="text-2xl font-normal">
+                                    <p className="text-xl font-bold">
 
-                                        {`0`}
+                                        {`3`}
                                     </p>
-                                    <button className="pl-2">
+                                    <button className="pl-1">
                                         <Image
-                                            width={28}
-                                            height={28}
+                                            width={22}
+                                            height={22}
                                             alt="menu"
                                             src={`/icons/cross.svg`}
                                         />
