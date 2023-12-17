@@ -2,39 +2,30 @@
 
 import Link from "next/link"
 import Image from "next/image"
+import CarouselCard from "./components/CarouselCard";
+import { Inter } from "next/font/google";
 
-import CarouselManger from "./components/CarouselManger"
 
 
+
+const inter = Inter({ subsets: ["latin"] });
 
 
 const Home = () => {
 
 
-  const offerImageArr = ["/foodItemPics/Gobi Manchurian.jpg", "/foodItemPics/burger.jpg", "/foodItemPics/momos.jpg", "/foodItemPics/shahi Paneer.jpg", "/foodItemPics/thali.jpg"];
+
 
 
   const Catagory = [
     { "BIRYANI": "/icons/catagory/biryani.png" },
     { "PARATHA": "/icons/catagory/paratha.png" },
-    { "BURGER": "/icons/catagory/bug.png" },
-    { "BURGER": "/icons/catagory/bug.png" },
-    { "BURGER": "/icons/catagory/bug.png" },
-    { "BURGER": "/icons/catagory/bug.png" },
-    { "BURGER": "/icons/catagory/bug.png" },
-    { "BURGER": "/icons/catagory/bug.png" },
-    { "BURGER": "/icons/catagory/bug.png" },
-    { "BURGER": "/icons/catagory/bug.png" },
-    { "BURGER": "/icons/catagory/bug.png" },
-    { "BURGER": "/icons/catagory/bug.png" },
-    { "BURGER": "/icons/catagory/bug.png" },
-    { "BURGER": "/icons/catagory/bug.png" },
-    { "BURGER": "/icons/catagory/bug.png" },
-    { "BURGER": "/icons/catagory/bug.png" },
-    { "BURGER": "/icons/catagory/bug.png" },
-    { "BURGER": "/icons/catagory/bug.png" },
-    { "BURGER": "/icons/catagory/bug.png" },
-
+    { "BURGER": "/icons/catagory/burger.png" },
+    { "ICE CREAM": "/icons/catagory/ice_cream.png" },
+    { "JUICE": "/icons/catagory/juice.png" },
+    { "PIZZA": "/icons/catagory/pizza.png" },
+    { "ROLL": "/icons/catagory/roll.png" },
+    { "CHOWMIN": "/icons/catagory/chowmin.png" },
   ]
 
 
@@ -43,42 +34,33 @@ const Home = () => {
     <div className="flex flex-col items-center">
 
       {/* Resturant Title */}
-      <p className="text-3xl mb-1 font-bold">{`The Kabab House`}</p>
+      <p className={` text-3xl mb-1 mt-2 font-normal`}>{`THE KABAB HOUSE`}</p>
 
 
 
       {/* SearchBar */}
-      <section className="flex mb-5 lg:w-full md:w-full">
-        <input type="text" className="transition-all h-9 duration-75 input focus:border-none input-success w-full " placeholder="Search items" />
-        <button className="pl-2">
-          <Image
-            width={28}
-            height={28}
-            alt="menu"
-            src={`/icons/search.svg`}
-          />
-        </button>
+      <section className={`${inter.className} flex  mb-5 p-1 w-[320px] border-[1px] rounded-full border-black`}>
+        <Image
+          className="opacity-30 mx-2"
+          width={20}
+          height={20}
+          alt="menu"
+          src={`/icons/search.svg`}
+        />
+        <input type="text" className="focus:outline-none " placeholder="Search items" />
+
       </section>
 
 
 
 
       {/* Carousel Area */}
-      <section
-        className=" w-full border-2 border-orange-500 cert h-32 mt-3 mb-5 centerAll"
-      >
+      <div
 
-        Carousel Area
+        className="w-full mb-3 ">
 
-
-
-
-
-
-
-
-
-      </section>
+        <CarouselCard />
+      </div>
 
 
 
@@ -86,11 +68,11 @@ const Home = () => {
       {/* Catagory Area */}
       <section className=" w-full flex flex-col mb-4">
 
-        <p className="text-lg self-center font-bold mb-2">
+        <p className="text-lg self-center font-bold mb-2 tracking-wider">
           Whats On your mind?
         </p>
 
-        <div className="grid grid-rows-2 grid-flow-col gap-3 px-2 min-w-[100vw] overflow-x-scroll overscroll-contain no-scrollbar auto-cols-[27%]  "  >
+        <div className="grid grid-rows-2 grid-flow-col gap-1 px-2 min-w-[100vw] overflow-x-scroll overscroll-contain no-scrollbar auto-cols-[28%]  "  >
           {Catagory.map((item, index) => {
 
             const objKeys = Object.keys(item);
@@ -100,11 +82,11 @@ const Home = () => {
             return (<div key={index} className=" centerAll " >
 
               <p
-                className="font-normal text-[12px]"
+                className="font-medium text-[12px] tracking-widest"
               >{objKeys}</p>
               <Link href={`/biryani`}>
                 <Image
-                  className="h-[80px] w-auto aspect-square  "
+                  className="h-[65px] w-auto aspect-square  "
                   src={objValues}
                   alt="category"
                   width={100}
@@ -128,7 +110,7 @@ const Home = () => {
 
       <section className="mt-4 w-full flex justify-center ">
 
-        <button className="themedBtn mr-2 relative overflow-hidden">
+        <button className="themedBtn mr-2 relative overflow-hidden tracking-widest">
           <Link
             href={`/best-items`}>
 
@@ -148,7 +130,7 @@ const Home = () => {
           </Link>
         </button>
 
-        <button className="themedBtn ml-2  relative overflow-hidden">
+        <button className="themedBtn ml-2  relative overflow-hidden tracking-widest">
           <Link
             href={`/review-zone`}>
 
