@@ -5,7 +5,7 @@ import Link from "next/link"
 
 const Nav = () => {
     return (
-        <div className=" flex justify-between items-center pl-2 pr-4 w-full h-12  bg-white   rounded-lg shadow-[0_35px_50px_12px_rgba(0,0,0,0.3)]">
+        <div className=" flex justify-between items-center pl-2 pr-4  w-full h-12  bg-white   rounded-lg shadow-[0_0px_10px_2px_rgba(0,0,0,0.2)]">
             <Link className="" href={`/`}>
                 <Image
                     src='/icons/home.svg'
@@ -14,7 +14,7 @@ const Nav = () => {
                     height={43}
                 />
             </Link>
-            <Link className="" href={`/cart`}>
+            <Link className="" href={`/order`}>
                 <Image
                     src='/icons/spoonFork.svg'
                     alt="Home"

@@ -51,7 +51,7 @@ const FoodCard = ({ image }) => {
                     <section>
                         <div className="flex items-center justify-between">
 
-                            <div className="flex items-center justify-between px-3 font-bold text-center text-base bg-myGreenDark rounded-lg w-full text-white">
+                            <div className="flex items-center justify-between px-3 font-bold text-center text-base bg-myRed rounded-lg w-full text-white">
                                 {`HALF`}
                                 <section className="flex">
 
@@ -81,7 +81,7 @@ const FoodCard = ({ image }) => {
                             <button>
                                 <div className="dropdown dropdown-end">
                                     <div tabIndex={0} role="button" className="m-1 flex  ">
-                                        <Image className="bg-myGreenDark rounded-md py-1
+                                        <Image className="bg-myRed rounded-md py-1
                                         "
                                             src={`/icons/dropdownArrow.svg`}
                                             alt="dropdown"
@@ -90,9 +90,9 @@ const FoodCard = ({ image }) => {
                                         />
                                     </div>
                                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                                        <li className="hover:bg-myGreenDark hover:text-white rounded-md"><a>HALF</a></li>
+                                        <li className="hover:bg-myRed hover:text-white rounded-md"><a>HALF</a></li>
 
-                                        <li className="hover:bg-myGreenDark hover:text-white rounded-md"><a>FULL</a></li>
+                                        <li className="hover:bg-myRed hover:text-white rounded-md"><a>FULL</a></li>
                                     </ul>
                                 </div>
                             </button>

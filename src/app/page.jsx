@@ -3,12 +3,22 @@
 import Link from "next/link"
 import Image from "next/image"
 import CarouselCard from "./components/CarouselCard";
-import { Inter } from "next/font/google";
+
+import localFont from "next/font/local"
+const proxima = localFont({
+  src: "../../fonts/proxima.otf",
+})
+
+
+// import { Bebas_Neue } from "next/font/google";
+// const Bebas = Bebas_Neue({
+//   weight: '400',
+//   subsets: ['latin'],
+
+// });
 
 
 
-
-const inter = Inter({ subsets: ["latin"] });
 
 
 const Home = () => {
@@ -31,7 +41,7 @@ const Home = () => {
 
 
   return (
-    <div className="flex flex-col items-center">
+    <div className={`${proxima.className} flex flex-col items-center `} >
 
       {/* Resturant Title */}
       <p className={` text-3xl mb-1 mt-2 font-normal`}>{`THE KABAB HOUSE`}</p>
@@ -39,7 +49,7 @@ const Home = () => {
 
 
       {/* SearchBar */}
-      <section className={`${inter.className} flex  mb-5 p-1 w-[320px] border-[1px] rounded-full border-black`}>
+      <section className={` flex  mb-5 p-1 w-[320px] border-[1px] rounded-full border-black`}>
         <Image
           className="opacity-30 mx-2"
           width={20}
@@ -57,7 +67,7 @@ const Home = () => {
       {/* Carousel Area */}
       <div
 
-        className="w-full mb-3 ">
+        className="w-full mb-11 ">
 
         <CarouselCard />
       </div>
@@ -66,13 +76,13 @@ const Home = () => {
 
 
       {/* Catagory Area */}
-      <section className=" w-full flex flex-col mb-4">
+      <section className=" w-full flex flex-col mb-7 overscroll-contain">
 
-        <p className="text-lg self-center font-bold mb-2 tracking-wider">
+        <p className="text-xl self-center font-bold mb-2 tracking-wider">
           Whats On your mind?
         </p>
 
-        <div className="grid grid-rows-2 grid-flow-col gap-1 px-2 min-w-[100vw] overflow-x-scroll overscroll-contain no-scrollbar auto-cols-[28%]  "  >
+        <div className="grid grid-rows-2 grid-flow-col gap-1 px-2 min-w-[100vw] overflow-x-scroll  no-scrollbar auto-cols-[28%]  "  >
           {Catagory.map((item, index) => {
 
             const objKeys = Object.keys(item);
@@ -106,9 +116,9 @@ const Home = () => {
 
 
 
+      {/* Review and Best Items */}
 
-
-      <section className="mt-4 w-full flex justify-center ">
+      <section className="mt-4 w-full flex justify-center mb-16">
 
         <button className="themedBtn mr-2 relative overflow-hidden tracking-widest">
           <Link

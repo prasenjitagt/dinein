@@ -6,6 +6,8 @@ module.exports = {
         "myGreenDark": "#009C1A",
         
         "myGreenLight":"#26CC00",
+        
+        "myRed":"#EF4444",
       }
     }
   },

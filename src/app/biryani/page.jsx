@@ -8,6 +8,14 @@ import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 
+import localFont from "next/font/local"
+
+
+const proxima = localFont({
+    src: "../../../fonts/proxima.otf",
+})
+
+
 
 
 export default function Biryani() {
@@ -37,7 +45,7 @@ export default function Biryani() {
 
     return (
         <>
-            <div className="relative text-center rounded-lg text-white py-4 mx-4 mb-4 bg-gradient-to-b from-myGreenDark to-myGreenLight">
+            <div className={`${proxima.className} relative text-center rounded-lg text-white py-4 mx-4 mb-4 bg-gradient-to-b from-myGreenDark to-myGreenLight`}>
                 <button
                     onClick={() => router.back()}
 
@@ -128,7 +136,7 @@ export default function Biryani() {
 
 
 
-            <div className="p-4 bg-slate-300 grid sm:grid-cols-1 lg:grid-cols-2 gap-2">
+            <div className="p-4  grid sm:grid-cols-1 lg:grid-cols-2 gap-2">
 
                 <FoodCard image={images[0]} />
                 <FoodCard image={images[1]} />

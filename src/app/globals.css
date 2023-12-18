@@ -15,7 +15,7 @@
     }
 
     .themedBtn {
-        @apply bg-myGreenDark text-white w-36 py-4 pl-2 flex text-[12px] font-extrabold rounded-lg 
+        @apply bg-myRed text-white w-36 py-4 pl-2 flex text-[12px] font-extrabold rounded-lg 
     }
 
     .centerAll {
