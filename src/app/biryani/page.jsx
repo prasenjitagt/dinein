@@ -45,13 +45,16 @@ export default function Biryani() {
 
     return (
         <>
-            <div className={`${proxima.className} relative text-center rounded-lg text-white py-4 mx-4 mb-4 bg-gradient-to-b from-myGreenDark to-myGreenLight`}>
+
+
+            {/* Gradient Area */}
+            <div className={`${proxima.className} relative text-center rounded-lg text-white py-4 mx-4 mb-4 bg-gradient-to-b from-red-600 to-myRed`}>
                 <button
                     onClick={() => router.back()}
 
                     className="absolute left-2 top-2">
                     <Image
-                        src={`/icons/back.svg`}
+                        src={`/icons/lessThanWhite.svg`}
                         alt="dropdown"
                         height={25}
                         width={25}
@@ -94,21 +97,25 @@ export default function Biryani() {
 
                 </section>
 
+
+
+
                 <section className="text-center mb-2">
                     <p className="text-sm font-bold mb-1">
                         VIEW CART
                     </p>
+                    {/* View Cart Button Section */}
 
                     <div className="flex items-center justify-between">
 
-                        <div className="flex items-center justify-between px-3 font-bold text-center text-sm bg-myGreenDark rounded-lg w-full text-white">
+                        <div className="flex items-center justify-between px-3 font-bold text-center text-sm bg-myRed rounded-lg w-full text-white">
                             {`1 Item Added`}
 
 
                             <button>
                                 <div className="dropdown dropdown-end">
                                     <div tabIndex={0} role="button" className="mt-1 ">
-                                        <Image className="bg-myGreenDark rounded-md "
+                                        <Image className="bg-myRed rounded-md "
                                             src={`/icons/dropdownArrow.svg`}
                                             alt="dropdown"
                                             height={25}
@@ -116,9 +123,9 @@ export default function Biryani() {
                                         />
                                     </div>
                                     <ul tabIndex={0} className="dropdown-content z-[1] menu text-black shadow bg-white rounded-box w-52">
-                                        <li className=" hover:bg-myGreenDark hover:text-white rounded-md"><a>HALF</a></li>
+                                        <li className=" hover:bg-myRed hover:text-white rounded-md"><a>HALF</a></li>
 
-                                        <li className="hover:bg-myGreenDark hover:text-white rounded-md"><a>FULL</a></li>
+                                        <li className="hover:bg-myRed hover:text-white rounded-md"><a>FULL</a></li>
                                     </ul>
                                 </div>
                             </button>

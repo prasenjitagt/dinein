@@ -9,19 +9,56 @@ const FoodCard = ({ image }) => {
     }
 
     return (
-        <div className="bg-base-100 rounded-xl p-4 shadow-xl min-w-[330px]">
+        <div className="bg-base-100 rounded-xl p-4 drop-shadow-lg min-w-[330px]">
             <div className="flex gap-2 ">
 
                 <Image className="min-w-[100px] max-h-[100px] aspect-square overflow-hidden rounded-xl" height={150} width={150} alt={`food-item`} src={image} />
 
                 <section className="flex flex-col justify-between ">
 
-                    <section>
+                    <section className="flex justify-between relative">
                         <p className="font-bold text-sm">{`BIRYANI`}</p>
-                        <p className="text-myGreenDark">₹399</p>
-                    </section>
 
-                    <section>
+                        {/* Item Count , Plus , Minus Button */}
+                        <div className="flex flex-col items-center absolute -right-1 top-0">
+
+
+                            {/* Minus Button */}
+                            <button>
+                                <Image
+                                    className="bg-myRed rounded-[100%] h-[20px] w-[20px] p-1 opacity-90 border-[1px] border-myRed"
+                                    width={10}
+                                    height={10}
+                                    alt="menu"
+                                    src={`/icons/minus.svg`}
+                                />
+                            </button>
+
+
+                            {/* Item Count */}
+                            <p className="text-xl px-3 font-semibold">
+                                {`0`}
+                            </p>
+
+
+
+                            {/* Plus Button */}
+                            <button>
+                                <Image
+                                    className="bg-myRed rounded-[100%] h-[20px] w-[20px] p-1 opacity-90 border-[1px] border-myRed"
+                                    width={10}
+                                    height={10}
+                                    alt="menu"
+                                    src={`/icons/add.svg`}
+                                />
+                            </button>
+                        </div>
+                    </section>
+                    <p className="text-myGreenDark">₹399</p>
+
+
+                    {/* About Section */}
+                    <section className="mt-3">
 
                         <p className="font-bold text-sm">ABOUT</p>
 
@@ -49,53 +86,37 @@ const FoodCard = ({ image }) => {
                     </section>
 
                     <section>
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-end pt-2">
 
-                            <div className="flex items-center justify-between px-3 font-bold text-center text-base bg-myRed rounded-lg w-full text-white">
-                                {`HALF`}
-                                <section className="flex">
 
-                                    <button onClick={() => window.alert("clicked")} className="pr-1">
-                                        <Image
+                            <div className="flex items-center justify-between">
 
-                                            width={23}
-                                            height={23}
-                                            alt="menu"
-                                            src={`/icons/minus.svg`}
-                                        />
+                                <div className="flex items-center justify-between px-3 font-bold text-center text-sm bg-myRed rounded-lg w-full text-white">
+                                    {`HALF`}
+
+
+                                    <button>
+                                        <div className="dropdown dropdown-end">
+                                            <div tabIndex={0} role="button" className="mt-1 ">
+                                                <Image className="bg-myRed rounded-md "
+                                                    src={`/icons/dropdownArrow.svg`}
+                                                    alt="dropdown"
+                                                    height={25}
+                                                    width={25}
+                                                />
+                                            </div>
+                                            <ul tabIndex={0} className="dropdown-content z-[1] menu text-black shadow bg-white rounded-box w-52">
+                                                <li className=" hover:bg-myRed hover:text-white rounded-md"><a>HALF</a></li>
+
+                                                <li className="hover:bg-myRed hover:text-white rounded-md"><a>FULL</a></li>
+                                            </ul>
+                                        </div>
                                     </button>
-                                    <p className="text-xl font-bold">
 
-                                        {`3`}
-                                    </p>
-                                    <button className="pl-1">
-                                        <Image
-                                            width={22}
-                                            height={22}
-                                            alt="menu"
-                                            src={`/icons/cross.svg`}
-                                        />
-                                    </button>
-                                </section>
-                            </div>
-                            <button>
-                                <div className="dropdown dropdown-end">
-                                    <div tabIndex={0} role="button" className="m-1 flex  ">
-                                        <Image className="bg-myRed rounded-md py-1
-                                        "
-                                            src={`/icons/dropdownArrow.svg`}
-                                            alt="dropdown"
-                                            height={25}
-                                            width={25}
-                                        />
-                                    </div>
-                                    <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                                        <li className="hover:bg-myRed hover:text-white rounded-md"><a>HALF</a></li>
-
-                                        <li className="hover:bg-myRed hover:text-white rounded-md"><a>FULL</a></li>
-                                    </ul>
                                 </div>
-                            </button>
+
+                            </div>
+
                         </div>
 
                     </section>
