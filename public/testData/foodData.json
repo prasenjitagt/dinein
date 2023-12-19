@@ -1,0 +1,77 @@
+[
+
+    {
+      "name": "BIRYANI",
+      "imageUrl": "/icons/catagory/biryani.png",
+      "type": "nonveg",
+      "catagory": "BIRYANI",
+      "subCatagories": [{ "subCatagoryNam": "HALF", "price": 120 }, { "subCatagoryNam": "FULL", "price": 180 }]
+    },
+
+    {
+      "name": "PARATHA",
+      "imageUrl": "/icons/catagory/paratha.png",
+      "type": "veg",
+      "catagory": "PARATHA",
+      "subCatagories": [{ "subCatagoryNam": "HALF", "price": 30 }, { "subCatagoryNam": "FULL", "price": 50 }]
+    },
+
+    {
+      "name": "BURGER",
+      "imageUrl": "/icons/catagory/burger.png",
+      "type": "veg",
+      "catagory": "BURGER",
+      "subCatagories": [{ "subCatagoryNam": "VEG", "price": 30 }]
+    },
+    {
+      "name": "BURGER",
+      "imageUrl": "/icons/catagory/burger.png",
+      "type": "nonveg",
+      "catagory": "BURGER",
+      "subCatagories": [{ "subCatagoryNam": "NON VEG", "price": 50 }]
+    },
+
+    {
+      "name": "PIZZA",
+      "imageUrl": "/icons/catagory/pizza.png",
+      "type": "veg",
+      "catagory": "PIZZA",
+      "subCatagories": [{ "subCatagoryNam": "VEG", "price": 120 }]
+    },
+    {
+      "name": "PIZZA",
+      "imageUrl": "/icons/catagory/pizza.png",
+      "type": "nonveg",
+      "catagory": "PIZZA",
+      "subCatagories": [{ "subCatagoryNam": "NON VEG", "price": 200 }]
+    },
+    {
+      "name": "ROLL",
+      "imageUrl": "/icons/catagory/roll.png",
+      "type": "nonveg",
+      "catagory": "ROLL",
+      "subCatagories": [{ "subCatagoryNam": "EGG", "price": 30 }, { "subCatagoryNam": "DOUBLE EGG", "price": 40 }, { "subCatagoryNam": "CHICKEN", "price": 60 }, { "subCatagoryNam": "EGG CHICKEN", "price": 70 }]
+    },
+    {
+      "name": "ROLL",
+      "imageUrl": "/icons/catagory/roll.png",
+      "type": "veg",
+      "catagory": "ROLL",
+      "subCatagories": [{ "subCatagoryNam": "VEG", "price": 25 }]
+    },
+
+    {
+      "name": "CHOWMIN",
+      "imageUrl": "/icons/catagory/chowmin.png",
+      "type": "nonveg",
+      "catagory": "CHOWMIN",
+      "subCatagories": [{ "subCatagoryNam": "EGG", "price": 40 }, { "subCatagoryNam": "CHICKEN", "price": 80 }]
+    },
+    {
+      "name": "CHOWMIN",
+      "imageUrl": "/icons/catagory/chowmin.png",
+      "type": "nonveg",
+      "catagory": "CHOWMIN",
+      "subCatagories": [{ "subCatagoryNam": "PLAIN", "price": 30 }]
+    }
+  ]

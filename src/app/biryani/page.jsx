@@ -1,6 +1,7 @@
 "use client"
 
 
+const values = require('../../../public/testData/foodData.json');
 
 import { useState } from "react";
 import FoodCard from "../components/FoodCard";
@@ -22,6 +23,10 @@ export default function Biryani() {
 
     const router = useRouter();
 
+
+    const { name, imageUrl, type, catagory, subCatagories } = values[0];
+
+    console.log(catagory);
     const images = [
         "/foodItemPics/momos.jpg",
         "/foodItemPics/thali.jpg",

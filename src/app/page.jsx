@@ -1,10 +1,13 @@
 'use client'
 
+
 import Link from "next/link"
 import Image from "next/image"
 import CarouselCard from "./components/CarouselCard";
 
 import localFont from "next/font/local"
+import { useState, useEffect } from "react";
+import WarnDesktop from "./components/WarnDesktop";
 const proxima = localFont({
   src: "../../fonts/proxima.otf",
 })
@@ -24,6 +27,27 @@ const proxima = localFont({
 const Home = () => {
 
 
+  const [screenSize, setScreenSize] = useState(0);
+
+
+
+
+  //code for preventing desktop sites
+  useEffect(() => {
+    function handleResize() {
+      setScreenSize(window.innerWidth)
+    }
+
+    window.addEventListener("resize", handleResize)
+
+    handleResize()
+
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [screenSize])
+
+
 
 
 
@@ -39,8 +63,15 @@ const Home = () => {
   ]
 
 
-
+  // if (screenSize > 700)
+  if (false) {
+    return (<WarnDesktop />)
+  }
   return (
+
+
+
+
     <div className={`${proxima.className} flex flex-col items-center `} >
 
       {/* Resturant Title */}
