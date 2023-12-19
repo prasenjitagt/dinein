@@ -2,22 +2,36 @@
 
 import { useState } from "react";
 import Image from "next/image"
-const FoodCard = ({ image }) => {
+import FoodSubCategory from "./FoodSubCategory";
+const FoodCard = ({ FooditemDetails }) => {
+
+    // Show and Hide text in about section
     const [showText, setShowText] = useState(false);
     const handleShowText = () => {
         setShowText(prev => !prev);
+    }
+
+
+
+    const { name, imageUrl, type, catagory, subCatagories, about } = FooditemDetails;
+
+    const sendSubCatagory = (SubCatObj) => {
+
+
+
+
     }
 
     return (
         <div className="bg-base-100 rounded-xl p-4 drop-shadow-lg min-w-[330px]">
             <div className="flex gap-2 ">
 
-                <Image className="min-w-[100px] max-h-[100px] aspect-square overflow-hidden rounded-xl" height={150} width={150} alt={`food-item`} src={image} />
+                <Image className="min-w-[100px] max-h-[100px] aspect-square overflow-hidden rounded-xl" height={150} width={150} alt={`food-item`} src={imageUrl} />
 
                 <section className="flex flex-col justify-between ">
 
                     <section className="flex justify-between relative">
-                        <p className="font-bold text-sm">{`BIRYANI`}</p>
+                        <p className="font-bold text-sm">{name}</p>
 
                         {/* Item Count , Plus , Minus Button */}
                         <div className="flex flex-col items-center absolute -right-1 top-0">
@@ -67,7 +81,7 @@ const FoodCard = ({ image }) => {
                         <div className="flex relative">
 
                             <p className={`pr-2 text-justify text-[10px] ${showText ? null : (`line-clamp-2 `)} leading-3`}>
-                                {`Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi sint commodi vitae recusandae est dignissimos corporis dolor quaerat quae optio. `}
+                                {about}
 
                                 <button onClick={handleShowText} className=" text-[10px] font-bold lg:hidden md:hidden">
                                     {showText ? `less` : null}
@@ -91,27 +105,27 @@ const FoodCard = ({ image }) => {
 
                             <div className="flex items-center justify-between">
 
-                                <div className="flex items-center justify-between px-3 font-bold text-center text-sm bg-myRed rounded-lg w-full text-white">
+                                <div className="flex items-center justify-between px-3 font-bold  text-sm bg-myRed rounded-lg w-full text-white relative">
                                     {`HALF`}
 
-
-                                    <button>
-                                        <div className="dropdown dropdown-end">
-                                            <div tabIndex={0} role="button" className="mt-1 ">
-                                                <Image className="bg-myRed rounded-md "
-                                                    src={`/icons/dropdownArrow.svg`}
-                                                    alt="dropdown"
-                                                    height={25}
-                                                    width={25}
-                                                />
-                                            </div>
-                                            <ul tabIndex={0} className="dropdown-content z-[1] menu text-black shadow bg-white rounded-box w-52">
-                                                <li className=" hover:bg-myRed hover:text-white rounded-md"><a>HALF</a></li>
-
-                                                <li className="hover:bg-myRed hover:text-white rounded-md"><a>FULL</a></li>
-                                            </ul>
-                                        </div>
+                                    {/* Sub Catagory DropdownSection */}
+                                    <button className="mt-1 ">
+                                        <Image className="bg-myRed rounded-md "
+                                            src={`/icons/dropdownArrow.svg`}
+                                            alt="dropdown"
+                                            height={25}
+                                            width={25}
+                                        />
                                     </button>
+
+                                    {/* Dropdown Items */}
+                                    <div className=" absolute -left-24 flex flex-row-reverse bg-white text-base font-normal text-black " >
+                                        {subCatagories.map((item, index) => {
+                                            return (
+                                                <FoodSubCategory key={index} EachSubCatagory={item} />
+                                            )
+                                        })}
+                                    </div>
 
                                 </div>
 

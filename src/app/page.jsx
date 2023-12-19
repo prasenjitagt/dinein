@@ -72,7 +72,7 @@ const Home = () => {
 
 
 
-    <div className={`${proxima.className} flex flex-col items-center `} >
+    <div className={`${proxima.className} flex flex-col items-center h-[100vh]`} >
 
       {/* Resturant Title */}
       <p className={` text-3xl mb-1 mt-2 font-normal`}>{`THE KABAB HOUSE`}</p>

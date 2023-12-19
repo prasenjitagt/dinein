@@ -1,7 +1,7 @@
 "use client"
 
 
-const values = require('../../../public/testData/foodData.json');
+const foodData = require('../../../public/testData/foodData.json');
 
 import { useState } from "react";
 import FoodCard from "../components/FoodCard";
@@ -24,9 +24,7 @@ export default function Biryani() {
     const router = useRouter();
 
 
-    const { name, imageUrl, type, catagory, subCatagories } = values[0];
 
-    console.log(catagory);
     const images = [
         "/foodItemPics/momos.jpg",
         "/foodItemPics/thali.jpg",
@@ -150,11 +148,13 @@ export default function Biryani() {
 
             <div className="p-4  grid sm:grid-cols-1 lg:grid-cols-2 gap-2">
 
-                <FoodCard image={images[0]} />
-                <FoodCard image={images[1]} />
-                <FoodCard image={images[2]} />
-                <FoodCard image={images[3]} />
-                <FoodCard image={images[4]} />
+                {foodData.map((item, index) => {
+
+                    return (
+                        <FoodCard key={index} FooditemDetails={item} />
+                    )
+
+                })}
             </div>
         </>
     )

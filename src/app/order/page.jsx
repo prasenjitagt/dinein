@@ -1,11 +1,11 @@
 'use client'
 
+const foodData = require('../../../public/testData/foodData.json');
 import Link from "next/link"
 import { useState } from "react"
 import FoodCard from "../components/FoodCard"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
-
 
 import localFont from "next/font/local"
 
@@ -13,6 +13,12 @@ const proxima = localFont({
     src: "../../../fonts/proxima.otf",
 })
 
+import { Bebas_Neue } from "next/font/google";
+const Bebas = Bebas_Neue({
+    weight: '400',
+    subsets: ['latin'],
+
+});
 
 const Order = () => {
 
@@ -47,12 +53,14 @@ const Order = () => {
 
 
             {/* Orders view */}
-            <section className="h-[40vh]  overflow-x-scroll rounded-b-lg ">
-                <FoodCard image={images[0]} />
-                <FoodCard image={images[1]} />
-                <FoodCard image={images[2]} />
-                <FoodCard image={images[3]} />
-                <FoodCard image={images[4]} />
+            <section className="h-[40vh]  overflow-x-scroll rounded-b-lg p-4  grid sm:grid-cols-1 lg:grid-cols-2 gap-2">
+                {foodData.map((item, index) => {
+
+                    return (
+                        <FoodCard key={index} FooditemDetails={item} />
+                    )
+
+                })}
             </section>
 
 
@@ -96,8 +104,8 @@ const Order = () => {
                     </p>
                 </div>
                 <div className="flex justify-between text-black">
-                    <p>
-                        CGST (3%) :
+                    <p className={`${Bebas.className}`}>
+                        CGST 3{'%'}
                     </p>
                     <p>
                         {`₹${`9`}`}
