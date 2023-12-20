@@ -77,8 +77,8 @@ const Order = () => {
 
 
             {/* Bill Section */}
-            <section className=" mt-5 p-4  w-[85vw] rounded-2xl bg-red-100 drop-shadow-lg ">
-                <div className="flex justify-between text-black">
+            <section className={`${Bebas.className} mt-5 p-4  w-[85vw] rounded-2xl bg-red-100 drop-shadow-lg`}>
+                <div className="flex justify-between text-black ">
                     <p>
                         Item Total:
                     </p>
@@ -104,8 +104,8 @@ const Order = () => {
                     </p>
                 </div>
                 <div className="flex justify-between text-black">
-                    <p className={`${Bebas.className}`}>
-                        CGST 3{'%'}
+                    <p>
+                        {`CGST (3%) :`}
                     </p>
                     <p>
                         {`₹${`9`}`}
