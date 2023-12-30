@@ -32,22 +32,22 @@ const AddDoc = () => {
           </select>
         </section>
 
+      </div> {/*grid finish*/}
 
-        <section>
-          <p className="text-lg mb-1">Category</p>
+      <section>
+        <p className="text-lg mb-1">Category</p>
 
-          <input type="text" className="transition-all duration-75 input focus:border-none input-success w-full " placeholder="e.g. BIRYANI" />
-        </section>
+        <input type="text" className="transition-all duration-75 input focus:border-none input-success w-full " placeholder="e.g. BIRYANI" />
+      </section>
 
-        <section className="mb-1">
+      {/* <section className="mb-1">
           <p className="text-lg mb-1">Size</p>
 
 
           <input type="text" className="transition-all duration-75 input focus:border-none input-success w-full " placeholder="e.g. MEDIUM" />
-        </section>
+        </section> */}
 
 
-      </div> {/*grid finish*/}
 
 
       <section className="text-center mb-1">
