@@ -16,8 +16,9 @@ const Login = () => {
 
     console.log(isEyeOpen);
     return (
-        <div className="px-4 flex flex-col items-center ">
+        <div className="px-4 flex flex-col justify-center items-center h-[100vh]">
 
+<form action="" className="rounded-lg bg-slate-100 px-3 py-3 shadow-lg">
 
             {/* Login Heading */}
             <section className="self-start mt-4 mb-7 ml-5">
@@ -30,7 +31,6 @@ const Login = () => {
 
 
 
-            <form action="" className="rounded-lg bg-slate-100 px-3 py-3 shadow-lg">
                 <section className="mb-3">
                     <p>Email address</p>
                     <input type="email" name="email" placeholder="xyz@example.com" className="inputField" />

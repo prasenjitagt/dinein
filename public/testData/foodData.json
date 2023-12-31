@@ -2,7 +2,7 @@
 
     {
       "name": "BIRYANI",
-      "imageUrl": "/icons/catagory/biryani.png",
+      "imageUrl": "/foodItemPics/burger.jpg",
       "type": "nonveg",
       "catagory": "BIRYANI",
       "subCatagories": [{ "subCatagoryName": "HALF", "price": 120 }, { "subCatagoryName": "FULL", "price": 180 }],
@@ -11,7 +11,7 @@
 
     {
       "name": "PARATHA",
-      "imageUrl": "/icons/catagory/paratha.png",
+      "imageUrl": "/foodItemPics/Gobi Manchurian.jpg",
       "type": "veg",
       "catagory": "PARATHA",
       "subCatagories": [{ "subCatagoryName": "HALF", "price": 30 }, { "subCatagoryName": "FULL", "price": 50 }],
@@ -20,7 +20,7 @@
 
     {
       "name": "BURGER",
-      "imageUrl": "/icons/catagory/burger.png",
+      "imageUrl": "/foodItemPics/momos.jpg",
       "type": "veg",
       "catagory": "BURGER",
       "subCatagories": [{ "subCatagoryName": "VEG", "price": 30 }],
@@ -28,60 +28,10 @@
     },
     {
       "name": "BURGER",
-      "imageUrl": "/icons/catagory/burger.png",
+      "imageUrl": "/foodItemPics/Shahi Paneer.jpg",
       "type": "nonveg",
       "catagory": "BURGER",
       "subCatagories": [{ "subCatagoryName": "NON VEG", "price": 50 }],
-      "about":"It is very delicious dish made in Agartala to boost up your taste buds you know what your the best in the town"
-    },
-
-    {
-      "name": "PIZZA",
-      "imageUrl": "/icons/catagory/pizza.png",
-      "type": "veg",
-      "catagory": "PIZZA",
-      "subCatagories": [{ "subCatagoryName": "VEG", "price": 120 }],
-      "about":"It is very delicious dish made in Agartala to boost up your taste buds you know what your the best in the town"
-    },
-    {
-      "name": "PIZZA",
-      "imageUrl": "/icons/catagory/pizza.png",
-      "type": "nonveg",
-      "catagory": "PIZZA",
-      "subCatagories": [{ "subCatagoryName": "NON VEG", "price": 200 }],
-      "about":"It is very delicious dish made in Agartala to boost up your taste buds you know what your the best in the town"
-    },
-    {
-      "name": "ROLL",
-      "imageUrl": "/icons/catagory/roll.png",
-      "type": "nonveg",
-      "catagory": "ROLL",
-      "subCatagories": [{ "subCatagoryName": "EGG", "price": 30 }, { "subCatagoryName": "DOUBLE EGG", "price": 40 }, { "subCatagoryName": "CHICKEN", "price": 60 }, { "subCatagoryName": "EGG CHICKEN", "price": 70 }],
-      "about":"It is very delicious dish made in Agartala to boost up your taste buds you know what your the best in the town"
-    },
-    {
-      "name": "ROLL",
-      "imageUrl": "/icons/catagory/roll.png",
-      "type": "veg",
-      "catagory": "ROLL",
-      "subCatagories": [{ "subCatagoryName": "VEG", "price": 25 }],
-      "about":"It is very delicious dish made in Agartala to boost up your taste buds you know what your the best in the town"
-    },
-
-    {
-      "name": "CHOWMIN",
-      "imageUrl": "/icons/catagory/chowmin.png",
-      "type": "nonveg",
-      "catagory": "CHOWMIN",
-      "subCatagories": [{ "subCatagoryName": "EGG", "price": 40 }, { "subCatagoryName": "CHICKEN", "price": 80 }],
-      "about":"It is very delicious dish made in Agartala to boost up your taste buds you know what your the best in the town"
-    },
-    {
-      "name": "CHOWMIN",
-      "imageUrl": "/icons/catagory/chowmin.png",
-      "type": "nonveg",
-      "catagory": "CHOWMIN",
-      "subCatagories": [{ "subCatagoryName": "PLAIN", "price": 30 }],
       "about":"It is very delicious dish made in Agartala to boost up your taste buds you know what your the best in the town"
     }
   ]

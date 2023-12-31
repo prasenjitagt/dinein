@@ -6,7 +6,6 @@ const foodData = require('../../../public/testData/foodData.json');
 import { useState } from "react";
 import FoodCard from "../components/FoodCard";
 import Image from "next/image"
-import Link from "next/link"
 import { useRouter } from "next/navigation"
 
 import localFont from "next/font/local"
