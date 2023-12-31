@@ -23,10 +23,27 @@ const FoodCard = ({ FooditemDetails }) => {
     }
 
     return (
-        <div className="bg-base-100 rounded-xl p-4 drop-shadow-lg min-w-[330px]">
-            <div className="flex gap-2 ">
+        <div className="bg-base-100 rounded-xl p-2 drop-shadow-lg min-w-[330px]">
+            <div className="flex gap-2  relative">
 
-                <Image className="min-w-[100px] max-h-[100px] aspect-square overflow-hidden rounded-xl" height={150} width={150} alt={`food-item`} src={imageUrl} />
+            {/* Image */}
+                <Image className=" min-w-[115px] max-h-[115px] aspect-square overflow-hidden rounded-xl" height={150} width={150} alt={`food-item`} src={imageUrl} />
+
+
+
+            {/* Rating Stars */}
+            <div className="rating rating-sm gap-1 absolute bottom-0 left-[10px]">
+                <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-400" />
+                <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-400" checked />
+                <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-400" />
+                <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-400" />
+                <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-400" />
+            </div>
+
+
+                
+
+               
 
                 <section className="flex flex-col justify-between ">
 
@@ -105,8 +122,14 @@ const FoodCard = ({ FooditemDetails }) => {
 
                             <div className="flex items-center justify-between">
 
+
+
+                                
+
+
+
                                 <div className="flex items-center justify-between px-3 font-bold  text-sm bg-myRed rounded-lg w-full text-white relative">
-                                    {`HALF`}
+                                    {`ADD`}
 
                                     {/* Sub Catagory DropdownSection */}
                                     <button className="mt-1 ">
@@ -118,14 +141,21 @@ const FoodCard = ({ FooditemDetails }) => {
                                         />
                                     </button>
 
+
+
+
+
+
+
+
                                     {/* Dropdown Items */}
-                                    <div className=" absolute -left-24 flex flex-row-reverse bg-white text-base font-normal text-black " >
+                                    {/* <div className=" absolute -left-24 flex flex-row-reverse bg-white text-base font-normal text-black " >
                                         {subCatagories.map((item, index) => {
                                             return (
                                                 <FoodSubCategory key={index} EachSubCatagory={item} />
                                             )
                                         })}
-                                    </div>
+                                    </div> */}
 
                                 </div>
 
