@@ -45,61 +45,13 @@ const FoodCard = ({ FooditemDetails }) => {
 
 
 
-                <section className=" pl-3 flex  justify-between w-full ">
+                <section className="  flex flex-col justify-between ">
 
-
-                    {/* Name and About */}
-                    <div className="flex flex-col justify-between " >
-
-
-                        {/* Name */}
+                    <section className=" flex justify-between relative">
                         <p className="font-bold text-sm">{productName}</p>
 
-
-                        {/* Price */}
-                        <p className="text-myGreenDark">₹399</p>
-
-
-
-
-                        {/* About Section */}
-                        <section className="pb-3">
-
-                            <p className="font-bold text-sm">ABOUT</p>
-
-
-
-                            <div className="flex relative">
-
-                                <p className={`pr-2 text-justify text-[10px] ${showText ? null : (`line-clamp-2 `)} leading-3`}>
-                                    {description}
-
-                                    <button onClick={handleShowText} className=" text-[10px] font-bold lg:hidden md:hidden">
-                                        {showText ? `less` : null}
-                                    </button>
-
-
-                                </p>
-                                <p className="min-w-[15px]">{``}</p>
-
-                                <button onClick={handleShowText} className=" absolute right-0 bottom-0 text-[10px] font-bold lg:hidden md:hidden">
-                                    {showText ? null : `more`}
-                                </button>
-
-
-                            </div>
-                        </section>
-
-
-                    </div>
-
-
-
-                    <div className="flex flex-col justify-center">
                         {/* Item Count , Plus , Minus Button */}
-                        <div className="flex flex-col justify-between items-center ">
-
-                            {/* <div className="flex flex-col justify-between items-center absolute -right-1 top-0 "> */}
+                        <div className="flex flex-col items-center absolute -right-1 top-0">
 
 
                             {/* Minus Button */}
@@ -132,13 +84,86 @@ const FoodCard = ({ FooditemDetails }) => {
                                 />
                             </button>
                         </div>
+                    </section>
+                    <p className="text-myGreenDark">₹399</p>
 
 
-                    </div>
+                    {/* About Section */}
+                    <section className="mt-3">
+
+                        <p className="font-bold text-sm">ABOUT</p>
+
+
+
+                        <div className="flex relative">
+
+                            <p className={`pr-2 text-justify text-[10px] ${showText ? null : (`line-clamp-2 `)} leading-3`}>
+                                {description}
+
+                                <button onClick={handleShowText} className=" text-[10px] font-bold lg:hidden md:hidden">
+                                    {showText ? `less` : null}
+                                </button>
+
+
+                            </p>
+                            <p className="min-w-[15px]">{``}</p>
+
+                            <button onClick={handleShowText} className=" absolute right-0 bottom-0 text-[10px] font-bold lg:hidden md:hidden">
+                                {showText ? null : `more`}
+                            </button>
+
+
+                        </div>
+                    </section>
+
+                    <section>
+                        <div className="flex items-center justify-end pt-2">
+
+
+                            <div className="flex items-center justify-between">
 
 
 
 
+
+
+
+                                <div className="flex items-center justify-between px-3 font-bold  text-sm bg-myRed rounded-lg w-full text-white relative">
+                                    {`ADD`}
+
+                                    {/* Sub Catagory DropdownSection */}
+                                    <button className="mt-1 ">
+                                        <Image className="bg-myRed rounded-md "
+                                            src={`/icons/dropdownArrow.svg`}
+                                            alt="dropdown"
+                                            height={25}
+                                            width={25}
+                                        />
+                                    </button>
+
+
+
+
+
+
+
+
+                                    {/* Dropdown Items */}
+                                    {/* <div className=" absolute -left-24 flex flex-row-reverse bg-white text-base font-normal text-black " >
+                                        {subCatagories.map((item, index) => {
+                                            return (
+                                                <FoodSubCategory key={index} EachSubCatagory={item} />
+                                            )
+                                        })}
+                                    </div> */}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
                 </section>
             </div>
 

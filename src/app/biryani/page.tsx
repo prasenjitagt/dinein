@@ -1,10 +1,9 @@
 "use client"
 
 
-const foodData = require('../../../public/testData/foodData.json');
 
-import { useState } from "react";
-import FoodCard from "../components/FoodCard";
+import { useState, useEffect } from "react";
+import FoodCard from "../components/FoodCard.jsx";
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 
@@ -19,18 +18,31 @@ const proxima = localFont({
 
 
 export default function Biryani() {
-
     const router = useRouter();
 
+    const [foodItems, setFoodItems] = useState(['loading']);
 
 
-    const images = [
-        "/foodItemPics/momos.jpg",
-        "/foodItemPics/thali.jpg",
-        "/foodItemPics/Shahi Paneer.jpg",
-        "/foodItemPics/Gobi Manchurian.jpg",
-        "/foodItemPics/burger.jpg"
-    ]
+    useEffect(() => {
+        const fetchFoodData = async () => {
+            try {
+                const fetchFoodUrl = "http://localhost:4848/api/product-list";
+                const serverResponse = await fetch(fetchFoodUrl); // Use fetchFoodUrl here
+                const data = await serverResponse.json();
+                setFoodItems(data);
+            } catch (error) {
+                console.error("Error fetching food data:", error);
+            }
+        };
+
+        fetchFoodData();
+    }, []); // Empty dependency array means this effect runs once on mount
+
+
+
+
+
+
 
     const [isVegToggleOn, setIsVegToggleOn] = useState(false);
     const [isNonVegToggleOn, setIsNonVegToggleOn] = useState(false);
@@ -147,13 +159,27 @@ export default function Biryani() {
 
             <div className="p-4  grid sm:grid-cols-1 lg:grid-cols-2 gap-2">
 
-                {foodData.map((item, index) => {
+                {foodItems[0] === 'loading' ? (
+                    <div className="flex h-[100vh] w-[100vw]   justify-center items-center">
+                        <span className="loading loading-spinner text-success loading-lg"></span>
+                    </div>
 
-                    return (
-                        <FoodCard key={index} FooditemDetails={item} />
-                    )
+                ) : (
+                    foodItems.map((item, index) => {
 
-                })}
+                        return (
+                            <FoodCard key={index} FooditemDetails={item} />
+                        )
+
+                    })
+
+                )}
+
+
+
+
+
+
             </div>
         </>
     )
