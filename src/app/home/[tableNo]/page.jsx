@@ -4,7 +4,6 @@
 import Link from "next/link"
 import Image from "next/image"
 import CarouselCard from "../../components/CarouselCard";
-
 import localFont from "next/font/local"
 import { useState, useEffect } from "react";
 import WarnDesktop from "../../components/WarnDesktop";
@@ -140,7 +139,7 @@ const Home = ({ params }) => {
                                 <p
                                     className="font-medium text-[12px] tracking-widest"
                                 >{categoryName}</p>
-                                <Link href={`/biryani`}>
+                                <Link href={`/home/${params.tableNo}/${categoryName}`}>
                                     <Image
                                         className="h-[65px] w-auto aspect-square  "
                                         src={imageUrl}
@@ -215,6 +214,9 @@ const Home = ({ params }) => {
 
 
         </div >
+
+
+
     )
 }
 

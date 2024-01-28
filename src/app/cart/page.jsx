@@ -1,8 +1,9 @@
 'use client'
 
 const foodData = require('../../../public/testData/foodData.json');
+import { globalContext } from "../context/global_context"
 import Link from "next/link"
-import { useState } from "react"
+import { useState, useContext } from "react"
 import FoodCard from "../components/FoodCard"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
@@ -23,6 +24,11 @@ const Bebas = Bebas_Neue({
 const Order = () => {
 
     const router = useRouter();
+
+
+    //getting Global Cart values
+    const contextData = useContext(globalContext);
+
 
     const images = [
         "/foodItemPics/momos.jpg",

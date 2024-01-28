@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Nav from "./components/Nav";
+import CartProvider from "./context/global_context";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,14 +11,20 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
   return (
-    <html lang="en" className="">
-      <body className={`${inter.className}  h-[100vh]  overscroll-contain overflow-scroll relative `}>
-        <main className="p-1 ">{children}</main>
-        <nav className="ml-4 mr-3 mt-3 sticky bottom-4">
-          <Nav />
-        </nav>
-      </body>
-    </html>
+
+    <CartProvider>
+
+      <html lang="en" className="">
+        <body className={`${inter.className}  h-[100vh]  overscroll-contain overflow-scroll relative `}>
+          <main className="p-1 ">{children}</main>
+          <nav className="ml-4 mr-3 mt-3 sticky bottom-4">
+            <Nav />
+          </nav>
+        </body>
+      </html>
+
+    </CartProvider>
   );
 }

@@ -1,9 +1,15 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { globalContext } from "../context/global_context";
 import Image from "next/image"
-import FoodSubCategory from "./FoodSubCategory";
 const FoodCard = ({ FooditemDetails }) => {
+
+
+
+
+
+
 
     // Show and Hide text in about section
     const [showText, setShowText] = useState(false);
@@ -12,15 +18,25 @@ const FoodCard = ({ FooditemDetails }) => {
     }
 
 
+    //destructuring the food details that got from parent
+    const { _id, productName, imageUrl, typeOfProduct, categoryOfProduct, isAvailable, description } = FooditemDetails;
 
-    const { productName, imageUrl, typeOfProduct, categoryOfProduct, isAvailable, description } = FooditemDetails;
+    //getting Global Cart Values
+    const contextData = useContext(globalContext);
 
-    const sendSubCatagory = (SubCatObj) => {
+    //destructuring Global Cart Values
+    const { cartItemsAndCount, handleAddtoCart, handleRemoveFromCart } = contextData;
 
 
+    //function for using in find method
+    const getProductCount = (product) => {
 
-
+        return product.item && product.item['_id'] === _id;
     }
+
+    //getting the current product count from globalcontext
+    const currentProductCount = (cartItemsAndCount.find(getProductCount) || {}).itemCount || 0;
+
 
     return (
         <div className=" bg-base-100 rounded-xl p-2 drop-shadow-lg min-w-[330px]">
@@ -116,13 +132,13 @@ const FoodCard = ({ FooditemDetails }) => {
 
                             {/* Item Count */}
                             <p className="text-xl px-3 font-semibold">
-                                {`0`}
+                                {`${currentProductCount}`}
                             </p>
 
 
 
                             {/* Plus Button */}
-                            <button>
+                            <button onClick={() => handleAddtoCart(FooditemDetails)}>
                                 <Image
                                     className="bg-myRed rounded-[100%] h-[20px] w-[20px] p-1 opacity-90 border-[1px] border-myRed"
                                     width={10}
