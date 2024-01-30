@@ -1,9 +1,8 @@
 'use client'
 
-const foodData = require('../../../public/testData/foodData.json');
 import { globalContext } from "../context/global_context"
 import Link from "next/link"
-import { useState, useContext } from "react"
+import { useState, useContext, useEffect } from "react"
 import FoodCard from "../components/FoodCard"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
@@ -30,18 +29,41 @@ const Order = () => {
     const contextData = useContext(globalContext);
 
 
-    const images = [
-        "/foodItemPics/momos.jpg",
-        "/foodItemPics/thali.jpg",
-        "/foodItemPics/Shahi Paneer.jpg",
-        "/foodItemPics/Gobi Manchurian.jpg",
-        "/foodItemPics/burger.jpg"
-    ]
+    //destructuring Global Cart Values
+    const { cartItemsAndCount, handleAddtoCart, handleRemoveFromCart } = contextData;
+
+    console.log(cartItemsAndCount);
+
+    //converting the price in paise and storing the total
+    const totalPriceInPaise = cartItemsAndCount.reduce((totalAcc, cartItem) => {
+
+        const priceInPaise = Number(cartItem.item.price) * cartItem.itemCount;
 
 
-    const [isClicked, setIsClicked] = useState(false);
+
+        return totalAcc + priceInPaise
+
+    }, 0);
+
+    // State to hold the total price in rupees
+    const [totalPriceInRupees, setTotalPriceInRupees] = useState(0);
+
+    //for changing the value of ITEM TOTAL
+    useEffect(() => {
+
+        const totalPrice = (totalPriceInPaise / 100).toFixed(2);
+        setTotalPriceInRupees(totalPrice);
+
+    }, [totalPriceInPaise]);
+
+
+
+
+
+    //for controlling the dine in section
+    const [isDining, setIsDining] = useState(true);
     return (
-        <div className={`h-[100vh] ${proxima.className} flex flex-col items-center px-2`}>
+        <div className={`h-[100vh]  flex flex-col items-center px-2`}>
 
             <section className="w-full flex  justify-center my-3 relative ">
                 <button className="absolute left-6" onClick={() => router.back()}>
@@ -60,22 +82,34 @@ const Order = () => {
 
             {/* Orders view */}
             <section className="h-[40vh]  overflow-x-scroll rounded-b-lg p-4  grid sm:grid-cols-1 lg:grid-cols-2 gap-2">
-                {foodData.map((item, index) => {
+                {
 
-                    return (
-                        <FoodCard key={index} FooditemDetails={item} />
+                    cartItemsAndCount && cartItemsAndCount.length > 0 ? (
+                        cartItemsAndCount.map((eachItem, index) => {
+
+                            return <FoodCard key={index} FooditemDetails={eachItem.item} />;
+
+
+                        })
+                    ) : (
+                        <div className="centerAll text-xl font-bold">
+                            No Items Yet
+                        </div>
                     )
 
-                })}
+                }
             </section>
 
 
-            {/* Dine In */}
+            {/* Dine in  and Take away*/}
             <section className="flex w-[70vw] h-11  mt-5 shadow-lg rounded-2xl">
-                <button className={`${isClicked ? `bg-myRed text-white` : ``} w-full rounded-l-xl  border-[1px] border-myRed`}>
-                    Dine In
+                {/* Dine in */}
+                <button onClick={() => setIsDining(true)} className={`${isDining ? `bg-myRed text-white` : ``} w-full rounded-l-xl  border-[1px] border-myRed`}>
+                    Dine in
                 </button>
-                <button className={`${isClicked ? `` : `bg-myRed text-white`} w-full rounded-r-xl  border-[1px] border-myRed`} >
+
+                {/* Take away */}
+                <button onClick={() => setIsDining(false)} className={`${isDining ? `` : `bg-myRed text-white`} w-full rounded-r-xl  border-[1px] border-myRed`} >
                     Take away
                 </button>
 
@@ -89,7 +123,7 @@ const Order = () => {
                         Item Total:
                     </p>
                     <p>
-                        {`₹${`300`}`}
+                        {`₹${totalPriceInRupees}`}
                     </p>
                 </div>
 

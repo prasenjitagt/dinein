@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 
 export const globalContext = createContext();
@@ -8,16 +8,7 @@ export const globalContext = createContext();
 
 const CartProvider = ({ children }) => {
 
-    const [cartItemsAndCount, setCartItemsAndCount] = useState([
-        {
-            item: {
-                _id: 'abc',
-                itemCount: 0
-            }
-        }
-
-
-    ]);
+    const [cartItemsAndCount, setCartItemsAndCount] = useState([]);
 
     const handleAddtoCart = (cartItem) => {
 
@@ -35,6 +26,8 @@ const CartProvider = ({ children }) => {
 
         setCartItemsAndCount(copyCartItemsAndCount);
 
+
+        localStorage.setItem('cartItems', JSON.stringify(copyCartItemsAndCount));
     }
 
     const handleRemoveFromCart = (cartItem) => {
@@ -50,15 +43,26 @@ const CartProvider = ({ children }) => {
                 copyCartItemsAndCount[indexOfCurrentItem].itemCount -= 1;
 
                 // If the count becomes 0, you may remove the item from the cart (optional)
-                // if (copyCartItemsAndCount[indexOfCurrentItem].itemCount === 0) {
-                //     copyCartItemsAndCount.splice(indexOfCurrentItem, 1);
-                // }
+                if (copyCartItemsAndCount[indexOfCurrentItem].itemCount === 0) {
+                    copyCartItemsAndCount.splice(indexOfCurrentItem, 1);
+                }
             }
 
             setCartItemsAndCount(copyCartItemsAndCount);
+
+            localStorage.setItem('cartItems', JSON.stringify(copyCartItemsAndCount));
+
         }
 
+
     }
+
+
+    useEffect(() => {
+        setCartItemsAndCount(JSON.parse(localStorage.getItem('cartItems')) || []);
+
+
+    }, [])
 
 
     return (

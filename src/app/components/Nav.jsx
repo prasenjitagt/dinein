@@ -30,7 +30,7 @@ const Nav = () => {
                     height={30}
                 />
             </Link>
-            <Link className="" href={`/biryani`}>
+            <Link className="" href={`/cart`}>
                 <Image
                     src='/icons/menuBottomNav.svg'
                     alt="Home"
