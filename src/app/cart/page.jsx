@@ -6,7 +6,7 @@ import { useState, useContext, useEffect } from "react"
 import FoodCard from "../components/FoodCard"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
-
+import { io } from "socket.io-client"
 import localFont from "next/font/local"
 
 const proxima = localFont({
@@ -20,7 +20,37 @@ const Bebas = Bebas_Neue({
 
 });
 
+//connecting to socket server in backend
+const socket = io("http://localhost:4848");
+
+//console logging on establishing connection
+socket.on('connection', (socket) => {
+    console.log('socket connected id: ', socket.id);
+})
+
+
+
+
+
 const Order = () => {
+
+    const handleConfirmOrder = () => {
+
+
+        const modifiedPayload = cartItemsAndCount.map(eachItem => {
+            const { image, ...everythingWithoutImage } = eachItem.item;
+
+            return {
+                item: everythingWithoutImage,
+                itemCount: eachItem.itemCount
+            };
+        })
+
+
+        socket.emit('orderFromClient', modifiedPayload);
+
+
+    }
 
 
     const router = useRouter();
@@ -220,17 +250,19 @@ const Order = () => {
                     </p></div>
             </section>
 
-            <Link href='/thankyou' className="flex justify-between items-center mt-5 py-1 px-8 w-[85vw] rounded-2xl bg-myRed  text-white text-xl font-bold shadow-[0_5px_7px_2px_rgba(0,0,0,0.2)]">
-                <p>
-                    CONFIRM ORDER
-                </p>
-                <Image
-                    width={45}
-                    height={45}
-                    alt="back"
-                    src={`/icons/pan.svg`}
-                />
-            </Link>
+            <button onClick={handleConfirmOrder}>
+                <Link href='' className="flex justify-between items-center mt-5 py-1 px-8 w-[85vw] rounded-2xl bg-myRed  text-white text-xl font-bold shadow-[0_5px_7px_2px_rgba(0,0,0,0.2)]">
+                    <p>
+                        CONFIRM ORDER
+                    </p>
+                    <Image
+                        width={45}
+                        height={45}
+                        alt="back"
+                        src={`/icons/pan.svg`}
+                    />
+                </Link>
+            </button>
 
 
         </div>
