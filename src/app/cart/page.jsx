@@ -22,7 +22,11 @@ const Bebas = Bebas_Neue({
 
 const Order = () => {
 
+
     const router = useRouter();
+
+    //for controlling the dine in and take away section
+    const [isDining, setIsDining] = useState(true);
 
 
     //getting Global Cart values
@@ -30,9 +34,8 @@ const Order = () => {
 
 
     //destructuring Global Cart Values
-    const { cartItemsAndCount, handleAddtoCart, handleRemoveFromCart } = contextData;
+    const { cartItemsAndCount, handleAddtoCart, handleRemoveFromCart, tableNo, setTableNo } = contextData;
 
-    console.log(cartItemsAndCount);
 
     //converting the price in paise and storing the total
     const totalPriceInPaise = cartItemsAndCount.reduce((totalAcc, cartItem) => {
@@ -58,10 +61,62 @@ const Order = () => {
 
 
 
+    //For getting gst details
+    const [gstDetails, setGstDetails] = useState({
+        sgst: 'loading...',
+        cgst: 'loading...',
+    });
+
+    //For numeric value of gst
+    const [numGstAndGt, setNumGstAndGt] = useState({
+        numSgst: 'loading...',
+        numCgst: 'loading...',
+        grandTotal: 'loading...',
+    });
+
+    useEffect(() => {
+        const fetchGstData = async () => {
+            try {
+                const fetchGstUrl = "http://localhost:4848/api/get-gst";
+                const serverResponse = await fetch(fetchGstUrl);
+                const data = await serverResponse.json();
+                setGstDetails(data);
+
+                // Move totalPriceInRupees calculation here
+                const totalPrice = (totalPriceInPaise / 100).toFixed(2);
+
+                const sgstFromServerFloat = parseFloat(data.sgst);
+                const cgstFromServerFloat = parseFloat(data.cgst);
+
+                const numberedSgstValue = ((totalPrice * sgstFromServerFloat) / 100);
+
+                const numberedCgstValue = ((totalPrice * cgstFromServerFloat) / 100);
+
+                const calculatedGrandTotal = ((totalPriceInPaise / 100) + numberedCgstValue + numberedSgstValue).toFixed(2);
+
+                setNumGstAndGt({
+                    numSgst: numberedSgstValue,
+                    numCgst: numberedCgstValue,
+                    grandTotal: calculatedGrandTotal
+                });
+
+            } catch (error) {
+                console.error("Error fetching Gst data:", error);
+            }
+        };
+
+        fetchGstData();
+    }, [totalPriceInPaise]); // Empty dependency array means this effect runs once on mount
 
 
-    //for controlling the dine in section
-    const [isDining, setIsDining] = useState(true);
+
+
+
+
+
+
+
+
     return (
         <div className={`h-[100vh]  flex flex-col items-center px-2`}>
 
@@ -127,28 +182,30 @@ const Order = () => {
                     </p>
                 </div>
 
-                <div className="flex justify-between text-black">
+                {/* <div className="flex justify-between text-black">
                     <p>
                         Discount:
                     </p>
                     <p>
                         {`₹${`50`}`}
                     </p>
+                </div> */}
+
+
+                <div className="flex justify-between text-black">
+                    <p>
+                        {`SGST (${gstDetails.sgst}%) :`}
+                    </p>
+                    <p>
+                        {`₹${numGstAndGt.numSgst}`}
+                    </p>
                 </div>
                 <div className="flex justify-between text-black">
                     <p>
-                        {`SGST (3%) :`}
+                        {`CGST (${gstDetails.cgst}%) :`}
                     </p>
                     <p>
-                        {`₹${`9`}`}
-                    </p>
-                </div>
-                <div className="flex justify-between text-black">
-                    <p>
-                        {`CGST (3%) :`}
-                    </p>
-                    <p>
-                        {`₹${`9`}`}
+                        {`₹${numGstAndGt.numCgst}`}
                     </p>
                 </div>
                 <div className="w-full bg-black h-[1px]">
@@ -159,7 +216,7 @@ const Order = () => {
                         GRAND TOTAL :
                     </p>
                     <p>
-                        {`₹${`268`}`}
+                        {`₹${numGstAndGt.grandTotal}`}
                     </p></div>
             </section>
 

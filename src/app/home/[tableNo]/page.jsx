@@ -1,11 +1,11 @@
 'use client'
 
-
+import { globalContext } from '../../context/global_context'
 import Link from "next/link"
 import Image from "next/image"
 import CarouselCard from "../../components/CarouselCard";
 import localFont from "next/font/local"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import WarnDesktop from "../../components/WarnDesktop";
 const proxima = localFont({
     src: "../../../../fonts/proxima.otf",
@@ -22,6 +22,13 @@ const Home = ({ params }) => {
     //for getting categories from server
     const [categories, setCategories] = useState(['loading']);
 
+    //getting Global Cart values
+    const contextData = useContext(globalContext);
+
+    //destructuring Global Cart Values
+    const { cartItemsAndCount, handleAddtoCart, handleRemoveFromCart, tableNo, setTableNo } = contextData;
+
+
     useEffect(() => {
         const fetchCategoryData = async () => {
             try {
@@ -29,6 +36,7 @@ const Home = ({ params }) => {
                 const serverResponse = await fetch(fetchCategoriesUrl); // Use fetchCategoriesUrl here
                 const data = await serverResponse.json();
                 setCategories(data);
+                setTableNo(params.tableNo)
             } catch (error) {
                 console.error("Error fetching category data:", error);
             }
@@ -64,10 +72,6 @@ const Home = ({ params }) => {
 
 
 
-    // if (false) 
-    // {
-    //     return (<WarnDesktop />)
-    // }
 
     if (screenSize > 700) {
         return (<WarnDesktop />)

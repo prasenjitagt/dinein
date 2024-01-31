@@ -1,12 +1,24 @@
+'use client'
+
 import Image from "next/image"
 import Link from "next/link"
+import { globalContext } from '../context/global_context'
+import { useContext } from "react"
 
 
 
 const Nav = () => {
+
+    //getting Global Cart values
+    const contextData = useContext(globalContext);
+
+    //destructuring Global Cart Values
+    const { cartItemsAndCount, handleAddtoCart, handleRemoveFromCart, tableNo, setTableNo } = contextData;
+
+
     return (
         <div className=" flex justify-between items-center pl-2 pr-4  w-full h-12  bg-white   rounded-lg shadow-[0_0px_10px_2px_rgba(0,0,0,0.2)]">
-            <Link className="" href={`/`}>
+            <Link className="" href={`/home/${tableNo}`}>
                 <Image
                     src='/icons/home.svg'
                     alt="Home"

@@ -24,6 +24,8 @@ export default function Categories({ params }) {
     //getting Global Cart values
     const contextData = useContext(globalContext);
 
+    //destructuring Global Cart Values
+    const { cartItemsAndCount, handleAddtoCart, handleRemoveFromCart, tableNo, setTableNo } = contextData;
 
     //for fetching food products
     const [foodItems, setFoodItems] = useState(['loading']);
@@ -41,6 +43,7 @@ export default function Categories({ params }) {
         };
 
         fetchFoodData();
+        setTableNo(params.tableNo);
     }, []); // Empty dependency array means this effect runs once on mount
 
 
@@ -53,12 +56,35 @@ export default function Categories({ params }) {
     const [isNonVegToggleOn, setIsNonVegToggleOn] = useState(false);
 
     const handleVegToggle = () => {
-        setIsVegToggleOn(prev => !prev);
+        if (isVegToggleOn === false && isNonVegToggleOn === true) {
+            setIsVegToggleOn(true);
+            setIsNonVegToggleOn(false);
+        }
+        else if (isVegToggleOn === false && isNonVegToggleOn === false) {
+            setIsVegToggleOn(true);
+        }
+        if (isVegToggleOn === true) {
+            setIsVegToggleOn(false);
+
+        }
+
     }
 
 
     const handleNonVegToggle = () => {
-        setIsNonVegToggleOn(prev => !prev);
+
+        if (isVegToggleOn === true && isNonVegToggleOn === false) {
+            setIsVegToggleOn(false);
+            setIsNonVegToggleOn(true);
+        }
+        else if (isVegToggleOn === false && isNonVegToggleOn === false) {
+            setIsNonVegToggleOn(true);
+        }
+        else if (isNonVegToggleOn === true) {
+            setIsNonVegToggleOn(false);
+        }
+
+
     }
 
 

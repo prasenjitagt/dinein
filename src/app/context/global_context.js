@@ -8,6 +8,8 @@ export const globalContext = createContext();
 
 const CartProvider = ({ children }) => {
 
+    const [tableNo, setTableNo] = useState(0);
+
     const [cartItemsAndCount, setCartItemsAndCount] = useState([]);
 
     const handleAddtoCart = (cartItem) => {
@@ -67,7 +69,7 @@ const CartProvider = ({ children }) => {
 
     return (
 
-        <globalContext.Provider value={{ cartItemsAndCount, handleAddtoCart, handleRemoveFromCart }}>
+        <globalContext.Provider value={{ cartItemsAndCount, handleAddtoCart, handleRemoveFromCart, tableNo, setTableNo }}>
             {children}
         </globalContext.Provider>
 
