@@ -1,175 +1,232 @@
 "use client"
 
-import { useState } from "react";
+
+import { globalContext } from '../../../context/global_context'
+import { useState, useEffect, useContext } from "react";
+import FoodCard from "../../../components/FoodCard.jsx";
 import Image from "next/image"
-import FoodSubCategory from "./FoodSubCategory";
-const FoodCard = ({ FooditemDetails }) => {
+import { useRouter } from "next/navigation"
 
-    // Show and Hide text in about section
-    const [showText, setShowText] = useState(false);
-    const handleShowText = () => {
-        setShowText(prev => !prev);
+
+
+// Fonts
+import localFont from "next/font/local"
+const proxima = localFont({
+    src: "../../../../../fonts/proxima.otf",
+})
+
+
+
+
+export default function Categories({ params }) {
+    const router = useRouter();
+
+    //getting Global Cart values
+    const contextData = useContext(globalContext);
+
+    //destructuring Global Cart Values
+    const { cartItemsAndCount, handleAddtoCart, handleRemoveFromCart, tableNo, setTableNo } = contextData;
+
+    //for fetching food products
+    const [foodItems, setFoodItems] = useState(['loading']);
+
+    useEffect(() => {
+        const fetchFoodData = async () => {
+            try {
+                const fetchFoodUrl = "http://localhost:4848/api/product-list";
+                const serverResponse = await fetch(fetchFoodUrl); // Use fetchFoodUrl here
+                const data = await serverResponse.json();
+                setFoodItems(data);
+            } catch (error) {
+                console.error("Error fetching food data:", error);
+            }
+        };
+
+        fetchFoodData();
+        setTableNo(params.tableNo);
+    }, []); // Empty dependency array means this effect runs once on mount
+
+
+
+
+
+
+
+    const [isVegToggleOn, setIsVegToggleOn] = useState(false);
+    const [isNonVegToggleOn, setIsNonVegToggleOn] = useState(false);
+
+    const handleVegToggle = () => {
+        if (isVegToggleOn === false && isNonVegToggleOn === true) {
+            setIsVegToggleOn(true);
+            setIsNonVegToggleOn(false);
+        }
+        else if (isVegToggleOn === false && isNonVegToggleOn === false) {
+            setIsVegToggleOn(true);
+        }
+        if (isVegToggleOn === true) {
+            setIsVegToggleOn(false);
+
+        }
+
     }
 
 
+    const handleNonVegToggle = () => {
 
-    const { productName, imageUrl, typeOfProduct, categoryOfProduct, isAvailable, description } = FooditemDetails;
-
-    const sendSubCatagory = (SubCatObj) => {
-
-
+        if (isVegToggleOn === true && isNonVegToggleOn === false) {
+            setIsVegToggleOn(false);
+            setIsNonVegToggleOn(true);
+        }
+        else if (isVegToggleOn === false && isNonVegToggleOn === false) {
+            setIsNonVegToggleOn(true);
+        }
+        else if (isNonVegToggleOn === true) {
+            setIsNonVegToggleOn(false);
+        }
 
 
     }
+
 
     return (
-        <div className=" bg-base-100 rounded-xl p-2 drop-shadow-lg min-w-[330px]">
-            <div className=" flex   relative">
-
-                {/* Image */}
-                <Image className=" min-w-[115px] max-h-[115px] aspect-square overflow-hidden rounded-xl" height={150} width={150} alt={`food-item`} src={imageUrl} />
 
 
-
-                {/* Rating Stars */}
-                <div className="rating rating-sm gap-1 absolute bottom-0 left-[10px]">
-                    <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-400" />
-                    <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-400" checked onChange={() => { }} />
-                    <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-400" />
-                    <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-400" />
-                    <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-400" />
-                </div>
+        <>
 
 
+            {/* Gradient Area */}
+            <div className={`${proxima.className} relative text-center rounded-lg text-white py-4 mx-4 mb-4 bg-gradient-to-b from-red-600 to-myRed`}>
+                <button
+                    onClick={() => router.back()}
+
+                    className="absolute left-2 top-2">
+                    <Image
+                        src={`/icons/lessThanWhite.svg`}
+                        alt="dropdown"
+                        height={25}
+                        width={25}
+                    />
+                </button>
+                <p className="font-bold text-xl">
+                    {`${params.categoryName}`}
+                </p>
+                <p>
+                    {`MENU`}
+                </p>
 
 
+            </div>
 
 
-                <section className="  flex flex-col justify-between ">
+            {/* Veg and Non-Veg Controll Area and View Cart*/}
+            <div className="px-4 flex justify-between">
 
-                    <section className=" flex justify-between relative">
-                        <p className="font-bold text-sm">{productName}</p>
+                {/* Veg and Non-Veg Controll Area */}
+                <section className="grid grid-cols-2">
 
-                        {/* Item Count , Plus , Minus Button */}
-                        <div className="flex flex-col items-center absolute -right-1 top-0">
+                    <section className="">
+                        <p className="text-sm font-bold mb-1">
+                            VEG
+                        </p>
 
-
-                            {/* Minus Button */}
-                            <button>
-                                <Image
-                                    className="bg-myRed rounded-[100%] h-[20px] w-[20px] p-1 opacity-90 border-[1px] border-myRed"
-                                    width={10}
-                                    height={10}
-                                    alt="menu"
-                                    src={`/icons/minus.svg`}
-                                />
-                            </button>
-
-
-                            {/* Item Count */}
-                            <p className="text-xl px-3 font-semibold">
-                                {`0`}
-                            </p>
-
-
-
-                            {/* Plus Button */}
-                            <button>
-                                <Image
-                                    className="bg-myRed rounded-[100%] h-[20px] w-[20px] p-1 opacity-90 border-[1px] border-myRed"
-                                    width={10}
-                                    height={10}
-                                    alt="menu"
-                                    src={`/icons/add.svg`}
-                                />
-                            </button>
-                        </div>
-                    </section>
-                    <p className="text-myGreenDark">₹399</p>
-
-
-                    {/* About Section */}
-                    <section className="mt-3">
-
-                        <p className="font-bold text-sm">ABOUT</p>
-
-
-
-                        <div className="flex relative">
-
-                            <p className={`pr-2 text-justify text-[10px] ${showText ? null : (`line-clamp-2 `)} leading-3`}>
-                                {description}
-
-                                <button onClick={handleShowText} className=" text-[10px] font-bold lg:hidden md:hidden">
-                                    {showText ? `less` : null}
-                                </button>
-
-
-                            </p>
-                            <p className="min-w-[15px]">{``}</p>
-
-                            <button onClick={handleShowText} className=" absolute right-0 bottom-0 text-[10px] font-bold lg:hidden md:hidden">
-                                {showText ? null : `more`}
-                            </button>
-
-
-                        </div>
+                        <input type="checkbox" onChange={handleVegToggle} className={`toggle toggle-sm ${isVegToggleOn ? `bg-myGreenLight hover:bg-myGreenLight border-myGreenLight` : `bg-black border-black hover:bg-black`}`} checked={isVegToggleOn} />
                     </section>
 
-                    <section>
-                        <div className="flex items-center justify-end pt-2">
 
 
-                            <div className="flex items-center justify-between">
+                    <section className="text-center">
+                        <p className="text-sm font-bold mb-1">
+                            NON VEG
+                        </p>
+
+                        <input type="checkbox" onChange={handleNonVegToggle} className={`toggle toggle-sm ${isNonVegToggleOn ? `hover:bg-error bg-error border-error` : `bg-black border-black hover:bg-black`}`} checked={isNonVegToggleOn} />
+                    </section>
+
+                </section>
 
 
 
+                {/* View Cart  Section */}
+
+                <section className="text-center mb-2">
+                    <p className="text-sm font-bold mb-1">
+                        CART
+                    </p>
+                    {/* View Cart Button*/}
+
+                    <div className="flex items-center justify-between">
+
+                        <div className="flex items-center justify-between px-3 font-bold text-center text-sm bg-myRed rounded-lg w-full text-white">
+                            {`1 Item Added`}
 
 
-
-
-                                <div className="flex items-center justify-between px-3 font-bold  text-sm bg-myRed rounded-lg w-full text-white relative">
-                                    {`ADD`}
-
-                                    {/* Sub Catagory DropdownSection */}
-                                    <button className="mt-1 ">
+                            <button>
+                                <div className="dropdown dropdown-end">
+                                    <div tabIndex={0} role="button" className="mt-1 ">
                                         <Image className="bg-myRed rounded-md "
                                             src={`/icons/dropdownArrow.svg`}
                                             alt="dropdown"
                                             height={25}
                                             width={25}
                                         />
-                                    </button>
+                                    </div>
+                                    <ul tabIndex={0} className="dropdown-content z-[1] menu text-black shadow bg-white rounded-box w-52">
+                                        <li className=" hover:bg-myRed hover:text-white rounded-md"><a>HALF</a></li>
 
-
-
-
-
-
-
-
-                                    {/* Dropdown Items */}
-                                    {/* <div className=" absolute -left-24 flex flex-row-reverse bg-white text-base font-normal text-black " >
-                                        {subCatagories.map((item, index) => {
-                                            return (
-                                                <FoodSubCategory key={index} EachSubCatagory={item} />
-                                            )
-                                        })}
-                                    </div> */}
-
+                                        <li className="hover:bg-myRed hover:text-white rounded-md"><a>FULL</a></li>
+                                    </ul>
                                 </div>
-
-                            </div>
+                            </button>
 
                         </div>
 
-                    </section>
+                    </div>
+
+
+
                 </section>
+
+
             </div>
 
-        </div>
+
+
+            <div className="p-4  grid sm:grid-cols-1 lg:grid-cols-2 gap-2">
+
+                {foodItems[0] === 'loading' ? (
+                    <div className="flex h-[100vh] w-[100vw]   justify-center items-center">
+                        <span className="loading loading-spinner text-success loading-lg"></span>
+                    </div>
+
+                ) : (
+                    foodItems.map((item, index) => {
+
+                        if (item.categoryOfProduct === params.categoryName) {
+                            // Check if the item matches the selected vegetarian/non-vegetarian filter
+                            if ((isVegToggleOn && item.typeOfProduct === 'Veg') || (isNonVegToggleOn && item.typeOfProduct === 'Non-Veg')) {
+                                return <FoodCard key={index} FooditemDetails={item} />;
+                            } else if (!isVegToggleOn && !isNonVegToggleOn) {
+                                // If no filter is applied, show all items
+                                return <FoodCard key={index} FooditemDetails={item} />;
+                            }
+                        }
+                        return null; // Return null for items that don't match the filters
+
+
+
+                    })
+
+                )}
+
+
+
+
+
+
+            </div>
+        </>
+
+
 
     )
 }
-
-export default FoodCard

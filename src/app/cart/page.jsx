@@ -38,9 +38,9 @@ const Order = () => {
 
 
     //converting the price in paise and storing the total
-    const totalPriceInPaise = cartItemsAndCount.reduce((totalAcc, cartItem) => {
+    const totalPriceInPaise = cartItemsAndCount.reduce((totalAcc, eachCartItem) => {
 
-        const priceInPaise = Number(cartItem.item.price) * cartItem.itemCount;
+        const priceInPaise = Number(eachCartItem.item.price) * eachCartItem.itemCount;
 
 
 

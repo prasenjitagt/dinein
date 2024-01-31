@@ -47,7 +47,12 @@ export default function Categories({ params }) {
     }, []); // Empty dependency array means this effect runs once on mount
 
 
+    //For couting how many items are there in cart
+    const totalItems = cartItemsAndCount.reduce((totalAcc, eachCartItem) => {
 
+        return totalAcc + eachCartItem.itemCount
+
+    }, 0)
 
 
 
@@ -118,10 +123,10 @@ export default function Categories({ params }) {
             </div>
 
 
-            {/* Veg and Non-Veg Controll Area */}
+            {/* Veg and Non-Veg Controll Area and View Cart*/}
             <div className="px-4 flex justify-between">
 
-
+                {/* Veg and Non-Veg Controll Area */}
                 <section className="grid grid-cols-2">
 
                     <section className="">
@@ -146,38 +151,27 @@ export default function Categories({ params }) {
 
 
 
+                {/* View Cart  Section */}
 
                 <section className="text-center mb-2">
                     <p className="text-sm font-bold mb-1">
-                        VIEW CART
+                        CART
                     </p>
-                    {/* View Cart Button Section */}
+                    {/* View Cart Button*/}
 
-                    <div className="flex items-center justify-between">
+                    <div className="relative">
 
-                        <div className="flex items-center justify-between px-3 font-bold text-center text-sm bg-myRed rounded-lg w-full text-white">
-                            {`1 Item Added`}
+                        <Image
+                            src='/icons/menuBottomNav.svg'
+                            alt="Home"
+                            width={30}
+                            height={30}
+                        />
 
+                        <p className='absolute w-5 text-center top-0 right-0 bg-white opacity-90 font-bold rounded-badge text-sm'>
+                            {`${totalItems}`}
+                        </p>
 
-                            <button>
-                                <div className="dropdown dropdown-end">
-                                    <div tabIndex={0} role="button" className="mt-1 ">
-                                        <Image className="bg-myRed rounded-md "
-                                            src={`/icons/dropdownArrow.svg`}
-                                            alt="dropdown"
-                                            height={25}
-                                            width={25}
-                                        />
-                                    </div>
-                                    <ul tabIndex={0} className="dropdown-content z-[1] menu text-black shadow bg-white rounded-box w-52">
-                                        <li className=" hover:bg-myRed hover:text-white rounded-md"><a>HALF</a></li>
-
-                                        <li className="hover:bg-myRed hover:text-white rounded-md"><a>FULL</a></li>
-                                    </ul>
-                                </div>
-                            </button>
-
-                        </div>
 
                     </div>
 
