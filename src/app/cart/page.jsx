@@ -42,7 +42,8 @@ const Order = () => {
 
             return {
                 item: everythingWithoutImage,
-                itemCount: eachItem.itemCount
+                itemCount: eachItem.itemCount,
+
             };
         })
 
