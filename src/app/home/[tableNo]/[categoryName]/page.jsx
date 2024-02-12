@@ -25,7 +25,13 @@ export default function Categories({ params }) {
     const contextData = useContext(globalContext);
 
     //destructuring Global Cart Values
-    const { cartItemsAndCount, handleAddtoCart, handleRemoveFromCart, tableNo, setTableNo } = contextData;
+    const { cartItemsAndCount, handleAddtoCart, handleRemoveFromCart, tableNo, setTableNo, currentPage, setCurrentPage } = contextData;
+
+    useEffect(() => {
+
+        //setting Current Page 
+        setCurrentPage("home");
+    }, []);
 
     //for fetching food products
     const [foodItems, setFoodItems] = useState(['loading']);

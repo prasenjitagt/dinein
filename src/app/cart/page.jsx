@@ -63,10 +63,11 @@ const Order = () => {
     //getting Global Cart values
     const contextData = useContext(globalContext);
 
-
     //destructuring Global Cart Values
-    const { cartItemsAndCount, handleAddtoCart, handleRemoveFromCart, tableNo, setTableNo } = contextData;
+    const { cartItemsAndCount, handleAddtoCart, handleRemoveFromCart, tableNo, setTableNo, currentPage, setCurrentPage } = contextData;
 
+    //setting Current Page 
+    setCurrentPage("cart");
 
     //converting the price in paise and storing the total
     const totalPriceInPaise = cartItemsAndCount.reduce((totalAcc, eachCartItem) => {

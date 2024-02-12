@@ -8,6 +8,8 @@ export const globalContext = createContext();
 
 const CartProvider = ({ children }) => {
 
+
+    //for determining table no.
     const [tableNo, setTableNo] = useState(0);
 
     const [cartItemsAndCount, setCartItemsAndCount] = useState([]);
@@ -67,9 +69,20 @@ const CartProvider = ({ children }) => {
     }, [])
 
 
+
+
+
+
+    /*-----------------------------Area for determinging current page-----------------------------------*/
+
+    //for setting current page 
+    const [currentPage, setCurrentPage] = useState("");
+
+
+
     return (
 
-        <globalContext.Provider value={{ cartItemsAndCount, handleAddtoCart, handleRemoveFromCart, tableNo, setTableNo }}>
+        <globalContext.Provider value={{ cartItemsAndCount, handleAddtoCart, handleRemoveFromCart, tableNo, setTableNo, currentPage, setCurrentPage }}>
             {children}
         </globalContext.Provider>
 

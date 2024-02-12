@@ -13,12 +13,12 @@ const Nav = () => {
     const contextData = useContext(globalContext);
 
     //destructuring Global Cart Values
-    const { cartItemsAndCount, handleAddtoCart, handleRemoveFromCart, tableNo, setTableNo } = contextData;
+    const { cartItemsAndCount, handleAddtoCart, handleRemoveFromCart, tableNo, setTableNo, currentPage, setCurrentPage, handleSetCurrentPage } = contextData;
 
 
     return (
         <div className=" flex justify-between items-center pl-2 pr-4  w-full h-12  bg-white   rounded-lg shadow-[0_0px_10px_2px_rgba(0,0,0,0.2)]">
-            <Link className="" href={`/home/${tableNo}`}>
+            <Link className={`${currentPage === "home" ? "selectedPageBg" : ""}`} href={`/home/${tableNo}`}>
                 <Image
                     src='/icons/home.svg'
                     alt="Home"
@@ -26,26 +26,26 @@ const Nav = () => {
                     height={43}
                 />
             </Link>
-            <Link className="" href={`/order`}>
+            <Link className={`${currentPage === "orders" ? "selectedPageBg" : ""}`} href={`/orders`}>
                 <Image
                     src='/icons/spoonFork.svg'
-                    alt="Home"
+                    alt="Orders"
                     width={30}
                     height={30}
                 />
             </Link>
-            <Link className="" href={`/customerAccount`}>
+            <Link className={`${currentPage === "customerAccount" ? "selectedPageBg" : ""}`} href={`/customerAccount`}>
                 <Image
                     src='/icons/account.svg'
-                    alt="Home"
+                    alt="Account"
                     width={30}
                     height={30}
                 />
             </Link>
-            <Link className="" href={`/cart`}>
+            <Link className={`${currentPage === "cart" ? "selectedPageBg" : ""}`} href={`/cart`}>
                 <Image
                     src='/icons/menuBottomNav.svg'
-                    alt="Home"
+                    alt="Cart"
                     width={30}
                     height={30}
                 />
