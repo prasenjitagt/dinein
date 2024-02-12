@@ -121,13 +121,20 @@ const Order = () => {
 
                 const numberedSgstValue = ((totalPrice * sgstFromServerFloat) / 100);
 
+                //Capping to 2 decimal places
+                const cappedSgst = numberedSgstValue.toFixed(2);
+
                 const numberedCgstValue = ((totalPrice * cgstFromServerFloat) / 100);
 
+                //Capping to 2 decimal places
+                const cappedCgst = parseFloat(numberedCgstValue.toFixed(2));
+
+                //calculating GT
                 const calculatedGrandTotal = ((totalPriceInPaise / 100) + numberedCgstValue + numberedSgstValue).toFixed(2);
 
                 setNumGstAndGt({
-                    numSgst: numberedSgstValue,
-                    numCgst: numberedCgstValue,
+                    numSgst: cappedSgst,
+                    numCgst: cappedCgst,
                     grandTotal: calculatedGrandTotal
                 });
 

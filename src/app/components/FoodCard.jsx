@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { globalContext } from "../context/global_context";
 import Image from "next/image"
 const FoodCard = ({ FooditemDetails }) => {
@@ -19,7 +19,22 @@ const FoodCard = ({ FooditemDetails }) => {
 
 
     //destructuring the food details that got from parent
-    const { _id, productName, imageUrl, typeOfProduct, categoryOfProduct, isAvailable, description } = FooditemDetails;
+    const { _id, productName, price, imageUrl, typeOfProduct, categoryOfProduct, isAvailable, description } = FooditemDetails;
+
+    // State to hold the total price in rupees
+    const [totalPriceInRupees, setTotalPriceInRupees] = useState(0);
+
+    //for changing the value of ITEM TOTAL
+    useEffect(() => {
+
+        const totalPrice = (Number(price) / 100).toFixed(2);
+        setTotalPriceInRupees(totalPrice);
+
+    }, [price]);
+
+
+
+
 
     //getting Global Cart Values
     const contextData = useContext(globalContext);
@@ -43,7 +58,7 @@ const FoodCard = ({ FooditemDetails }) => {
             <div className=" flex   relative">
 
                 {/* Image */}
-                <Image className=" min-w-[115px] max-h-[115px] aspect-square overflow-hidden rounded-xl" height={150} width={150} alt={`food-item`} src={imageUrl} />
+                <Image className={`${isAvailable ? '' : 'grayscale'} min-w-[115px] max-h-[115px] aspect-square overflow-hidden rounded-xl`} height={150} width={150} alt={`food-item`} src={imageUrl} />
 
 
 
@@ -73,7 +88,7 @@ const FoodCard = ({ FooditemDetails }) => {
 
 
                         {/* Price */}
-                        <p className="text-myGreenDark">₹399</p>
+                        <p className="text-myGreenDark">{`₹${totalPriceInRupees}`}</p>
 
 
 
@@ -119,7 +134,7 @@ const FoodCard = ({ FooditemDetails }) => {
 
 
                             {/* Minus Button */}
-                            <button onClick={() => handleRemoveFromCart(FooditemDetails)}>
+                            <button onClick={() => isAvailable ? handleRemoveFromCart(FooditemDetails) : null}>
                                 <Image
                                     className="bg-myRed rounded-[100%] h-[20px] w-[20px] p-1 opacity-90 border-[1px] border-myRed"
                                     width={10}
@@ -138,7 +153,7 @@ const FoodCard = ({ FooditemDetails }) => {
 
 
                             {/* Plus Button */}
-                            <button onClick={() => handleAddtoCart(FooditemDetails)}>
+                            <button onClick={() => isAvailable ? handleAddtoCart(FooditemDetails) : null}>
                                 <Image
                                     className="bg-myRed rounded-[100%] h-[20px] w-[20px] p-1 opacity-90 border-[1px] border-myRed"
                                     width={10}
